@@ -5,6 +5,7 @@ import { FaUser, FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import "../App.css";
 import bgImage from "../assets/str.jpg";
 
+
 const Home = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -35,7 +36,7 @@ const Home = () => {
       item.description?.toLowerCase().includes(search.toLowerCase()) ||
       item.category?.toLowerCase().includes(search.toLowerCase())
   );
-
+/*start of container*/
   return (
     <Container
       fluid
