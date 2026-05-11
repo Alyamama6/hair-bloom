@@ -23,7 +23,6 @@ const Choose = () => {
       console.log(error);
     }
   };
-
   const increase = () => setQty(qty + 1);
   const decrease = () => qty > 1 && setQty(qty - 1);
 
