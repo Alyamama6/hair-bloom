@@ -1,4 +1,4 @@
-import Register from "../comps/Register_test"
+import Register from "../components/Register"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { describe, it, expect } from "vitest"
 
