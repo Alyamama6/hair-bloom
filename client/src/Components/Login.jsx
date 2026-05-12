@@ -54,6 +54,7 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormGroup className="form-space">
             <input
+              data-testid="login-email"
               className="auth-input"
               type="email"
               placeholder="Email"
@@ -66,6 +67,7 @@ const Login = () => {
 
           <FormGroup className="form-space">
             <input
+              data-testid="login-password"
               className="auth-input"
               type="password"
               placeholder="Password"
@@ -83,7 +85,9 @@ const Login = () => {
             Forget Password?
           </p>
 
-          <Button type="submit" className="auth-btn gray-btn">
+          <Button 
+            data-testid="login-btn"
+            type="submit" className="auth-btn gray-btn">
             Login
           </Button>
 
