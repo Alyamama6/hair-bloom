@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import str from "../assets/str.jpg";
 import "../App.css";
 
-
 const AdminUpdate = () => {
   const navigate = useNavigate();
   const location = useLocation();
