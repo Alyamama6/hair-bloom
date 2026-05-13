@@ -2,6 +2,7 @@ import { Container, Row, Col, Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../App.css";
+import bgImage from "../assets/str.jpg"; // ✨ أضفنا الخلفية
 
 const Choose = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Choose = () => {
       console.log(error);
     }
   };
+
   const increase = () => setQty(qty + 1);
   const decrease = () => qty > 1 && setQty(qty - 1);
 
@@ -50,13 +52,24 @@ const Choose = () => {
   }
 
   return (
-    <Container fluid className="choose-page">
+    <Container
+      fluid
+      className="choose-page"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+      }}
+    >
       <div className="choose-wrapper">
 
         {/* HEADER */}
         <Row className="align-items-center mb-4">
           <Col xs="2">
-            <span className="back-icon" onClick={() => navigate("/home")}>←</span>
+            <span className="back-icon" onClick={() => navigate("/home")}>
+              ←
+            </span>
           </Col>
 
           <Col xs="8" className="text-center">
@@ -86,14 +99,22 @@ const Choose = () => {
           <div className="choose-grid">
 
             <div className="main-image-box">
-              <img src={product.image} alt={product.name} className="main-image" />
+              <img
+                src={product.image}
+                alt={product.name}
+                className="main-image"
+              />
             </div>
 
             <div>
               {product.ingredients && product.ingredients.length > 0 ? (
                 product.ingredients.map((item, i) => (
                   <div key={i} className="ingredient-box">
-                    <img src={item.image} alt={item.name} className="ingredient-img" />
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="ingredient-img"
+                    />
                     <p className="ingredient-name">{item.name}</p>
                   </div>
                 ))
