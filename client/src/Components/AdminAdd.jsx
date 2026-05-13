@@ -40,7 +40,6 @@ const AdminAdd = () => {
       alert("Please fill all fields");
       return;
     }
-
     try {
       const response = await fetch("http://localhost:5000/add-product", {
         method: "POST",
