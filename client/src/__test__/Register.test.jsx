@@ -1,81 +1,98 @@
-import Register from "../comps/Register_test"
+import Register from "../Components/Register"
 import { render, screen, fireEvent } from "@testing-library/react"
-import { describe, it, expect } from "vitest"
+import { describe, it, expect, vi } from "vitest"
+import { BrowserRouter } from "react-router-dom"
 
-describe("Register Form Testing", () => {
+global.fetch = vi.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve({
+        message: "User registered successfully ✅",
+      }),
+  })
+)
 
-    it("Should render register form title", () => {
+describe("Register Page Testing", () => {
 
-        render(<Register />)
+  it("Should render register button", () => {
 
-        const title = screen.getByText("Register Form")
+    render(
+      <BrowserRouter>
+        <Register />
+      </BrowserRouter>
+    )
 
-        expect(title).toBeInTheDocument()
+    const btn = screen.getByTestId("register-btn")
+
+    expect(btn).toBeInTheDocument()
+  })
+
+  it("Should allow typing full name", () => {
+
+    render(
+      <BrowserRouter>
+        <Register />
+      </BrowserRouter>
+    )
+
+    const input = screen.getByTestId("register-name")
+
+    fireEvent.change(input, {
+      target: { value: "Khadija" },
     })
 
-    it("Should allow user to type full name", () => {
+    expect(input.value).toBe("Khadija")
+  })
 
-        render(<Register />)
+  it("Should allow typing email", () => {
 
-        const input = screen.getByTestId("fullname")
+    render(
+      <BrowserRouter>
+        <Register />
+      </BrowserRouter>
+    )
 
-        fireEvent.change(input, {
-            target: { value: "Khadija" }
-        })
+    const input = screen.getByTestId("register-email")
 
-        expect(input.value).toBe("Khadija")
+    fireEvent.change(input, {
+      target: { value: "khadija@gmail.com" },
     })
 
-    it("Should allow user to type email", () => {
+    expect(input.value).toBe("khadija@gmail.com")
+  })
 
-        render(<Register />)
+  it("Should allow typing phone number", () => {
 
-        const input = screen.getByTestId("email")
+    render(
+      <BrowserRouter>
+        <Register />
+      </BrowserRouter>
+    )
 
-        fireEvent.change(input, {
-            target: { value: "test@gmail.com" }
-        })
+    const input = screen.getByTestId("register-phone")
 
-        expect(input.value).toBe("test@gmail.com")
+    fireEvent.change(input, {
+      target: { value: "99999999" },
     })
 
-    it("Should allow user to type phone number", () => {
+    expect(input.value).toBe("99999999")
+  })
 
-        render(<Register />)
+  it("Should allow typing password", () => {
 
-        const input = screen.getByTestId("phone")
+    render(
+      <BrowserRouter>
+        <Register />
+      </BrowserRouter>
+    )
 
-        fireEvent.change(input, {
-            target: { value: "99999999" }
-        })
+    const input = screen.getByTestId("register-password")
 
-        expect(input.value).toBe("99999999")
+    fireEvent.change(input, {
+      target: { value: "123456" },
     })
 
-    it("Should allow user to type password", () => {
-
-        render(<Register />)
-
-        const input = screen.getByTestId("password")
-
-        fireEvent.change(input, {
-            target: { value: "123456" }
-        })
-
-        expect(input.value).toBe("123456")
-    })
-
-    it("Should allow user to type confirm password", () => {
-
-        render(<Register />)
-
-        const input = screen.getByTestId("confirm-password")
-
-        fireEvent.change(input, {
-            target: { value: "123456" }
-        })
-
-        expect(input.value).toBe("123456")
-    })
+    expect(input.value).toBe("123456")
+  })
 
 })

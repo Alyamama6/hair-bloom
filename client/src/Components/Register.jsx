@@ -53,6 +53,7 @@ const Register = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormGroup className="form-space">
             <input
+              data-testid="register-name"
               className="auth-input"
               type="text"
               placeholder="Full Name"
@@ -63,6 +64,7 @@ const Register = () => {
 
           <FormGroup className="form-space">
             <input
+              data-testid="register-email"
               className="auth-input"
               type="email"
               placeholder="Email"
@@ -73,6 +75,7 @@ const Register = () => {
 
           <FormGroup className="form-space">
             <input
+              data-testid="register-phone"
               className="auth-input"
               type="text"
               placeholder="Phone Number"
@@ -83,6 +86,7 @@ const Register = () => {
 
           <FormGroup className="form-space">
             <input
+              data-testid="register-password"
               className="auth-input"
               type="password"
               placeholder="Password"
@@ -95,6 +99,7 @@ const Register = () => {
 
           <FormGroup className="form-space">
             <input
+              data-testid="register-confirm-password"
               className="auth-input"
               type="password"
               placeholder="Confirm Password"
@@ -109,7 +114,9 @@ const Register = () => {
             )}
           </FormGroup>
 
-          <Button type="submit" className="auth-btn gray-btn">
+          <Button
+            data-testid="register-btn"
+            type="submit" className="auth-btn gray-btn">
             Register
           </Button>
 

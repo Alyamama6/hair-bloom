@@ -1,7 +1,6 @@
 import { Button, Container, Row, Col } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
-
 const Start = () => {
   const navigate = useNavigate();
 

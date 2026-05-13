@@ -1,42 +1,67 @@
-import Login from "../comps/Login_test"
+import Login from "../Components/Login"
 import { render, screen, fireEvent } from "@testing-library/react"
-import { describe, it, expect } from "vitest"
+import { describe, it, expect, vi } from "vitest"
+import { BrowserRouter } from "react-router-dom"
 
-describe("Login Form Testing", () => {
+global.fetch = vi.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve({
+        message: "Login successful ✅",
+        user: {
+          role: "user",
+        },
+      }),
+  })
+)
 
-    it("Should render login form title", () => {
+describe("Login Page Testing", () => {
 
-        render(<Login />)
+  it("Should render login button", () => {
 
-        const title = screen.getByText("Login Form")
+    render(
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    )
 
-        expect(title).toBeInTheDocument()
+    const btn = screen.getByTestId("login-btn")
+
+    expect(btn).toBeInTheDocument()
+  })
+
+  it("Should allow typing email", () => {
+
+    render(
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    )
+
+    const emailInput = screen.getByTestId("login-email")
+
+    fireEvent.change(emailInput, {
+      target: { value: "admin@gmail.com" },
     })
 
-    it("Should allow user to type email", () => {
+    expect(emailInput.value).toBe("admin@gmail.com")
+  })
 
-        render(<Login />)
+  it("Should allow typing password", () => {
 
-        const emailInput = screen.getByTestId("login-email")
+    render(
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    )
 
-        fireEvent.change(emailInput, {
-            target: { value: "admin@gmail.com" }
-        })
+    const passwordInput = screen.getByTestId("login-password")
 
-        expect(emailInput.value).toBe("admin@gmail.com")
+    fireEvent.change(passwordInput, {
+      target: { value: "123456" },
     })
 
-    it("Should allow user to type password", () => {
-
-        render(<Login />)
-
-        const passwordInput = screen.getByTestId("login-password")
-
-        fireEvent.change(passwordInput, {
-            target: { value: "123456" }
-        })
-
-        expect(passwordInput.value).toBe("123456")
-    })
+    expect(passwordInput.value).toBe("123456")
+  })
 
 })
