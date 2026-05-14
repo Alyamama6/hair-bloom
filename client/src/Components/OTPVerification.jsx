@@ -4,6 +4,7 @@ import { useState } from "react";
 import "../App.css";
 import bgImage from "../assets/str.jpg";
 
+
 const OTPVerification = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(["", "", "", ""]);
